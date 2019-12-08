@@ -1,0 +1,18 @@
+.add-new {
+  position: relative;
+  padding-bottom: 5px;
+  .invalid-feedback {
+    text-align: left;
+    position: absolute;
+    left: 0;
+    top: calc(100% - 8px);
+    font-weight: bold;
+    color: tomato;
+  }
+  input.error ~ .invalid-feedback {
+    display: block;
+  }
+  input.valid ~ .invalid-feedback {
+    display: none;
+  }
+}
