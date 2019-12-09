@@ -2,12 +2,17 @@ import React from "react";
 import "./Input.scss";
 
 const Input = props => {
-  function isInvalid({ valid, touched, shouldValidate }) {
+  const isInvalid = ({ valid, touched, shouldValidate }) => {
     return !valid && shouldValidate && touched;
-  }
+  };
   let randId = "n" + Math.random();
   let { label, type, placeholder, nameInput, errorMessage, onChange } = props;
   let cls = ["form-group", "input"];
+  let errDiv = (
+    <div className="invalid-feedback">
+      {errorMessage || "Enter correct value"}
+    </div>
+  );
   if (isInvalid(props)) {
     cls.push("invalid");
   }
@@ -26,11 +31,7 @@ const Input = props => {
         className="form-control"
       />
       {type === "checkbox" && <span>I agree</span>}
-      {isInvalid(props) ? (
-        <div className="invalid-feedback">
-          {errorMessage || "Enter correct value"}
-        </div>
-      ) : null}
+      {isInvalid(props) && errDiv}
     </div>
   );
 };
