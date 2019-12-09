@@ -13,12 +13,8 @@ const Input = props => {
       {errorMessage || "Enter correct value"}
     </div>
   );
-  if (isInvalid(props)) {
-    cls.push("invalid");
-  }
-  if (type === "checkbox") {
-    cls.push("checkbox");
-  }
+  cls.push(isInvalid(props) ? "invalid" : "");
+  cls.push(type === "checkbox" ? "checkbox" : "");
   return (
     <div className={cls.join(" ")}>
       <label htmlFor={randId}>{label}</label>
