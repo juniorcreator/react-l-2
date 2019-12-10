@@ -6,7 +6,7 @@ const Input = props => {
     return !valid && shouldValidate && touched;
   };
   let randId = "n" + Math.random();
-  let { label, type, placeholder, nameInput, errorMessage, onChange } = props;
+  let { label, type, placeholder, errorMessage, onChange, name } = props;
   let cls = ["form-group", "input"];
   let errDiv = (
     <div className="invalid-feedback">
@@ -19,7 +19,7 @@ const Input = props => {
     <div className={cls.join(" ")}>
       <label htmlFor={randId}>{label}</label>
       <input
-        name={nameInput}
+        name={name}
         placeholder={placeholder || "Enter text"}
         id={randId}
         type={type || "text"}

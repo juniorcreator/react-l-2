@@ -8,6 +8,7 @@ class App extends React.Component {
     formControls: {
       name: {
         value: "",
+        name: "name",
         type: "text",
         label: "Name",
         placeholder: "Enter name",
@@ -21,6 +22,7 @@ class App extends React.Component {
       },
       email: {
         value: "",
+        name: "email",
         type: "email",
         label: "Email",
         placeholder: "Enter email",
@@ -34,6 +36,7 @@ class App extends React.Component {
       },
       password: {
         value: "",
+        name: "password",
         type: "password",
         label: "Password",
         placeholder: "Enter password",
@@ -47,6 +50,7 @@ class App extends React.Component {
       },
       repeatPassword: {
         value: "",
+        name: "repeatPassword",
         type: "password",
         label: "Repeat Password",
         placeholder: "Repeat Password",
@@ -60,6 +64,7 @@ class App extends React.Component {
       },
       agreement: {
         value: false,
+        name: "agree",
         type: "checkbox",
         label: "Agreements",
         errorMessage: "Please confirm agreements",
@@ -83,6 +88,7 @@ class App extends React.Component {
       return (
         <Input
           type={control.type}
+          name={control.name}
           value={control.value}
           valid={control.valid}
           touched={control.touched}
@@ -122,7 +128,9 @@ class App extends React.Component {
     let formControls = { ...this.state.formControls };
     let control = { ...formControls[controlName] };
     control.value =
-      controlName === "agreement" ? e.target.checked : e.target.value;
+      this.state.formControls[controlName].type === "checkbox"
+        ? e.target.checked
+        : e.target.value;
     control.touched = true;
     control.valid = this.validateControl(control.value, control.validation);
     formControls[controlName] = control;
