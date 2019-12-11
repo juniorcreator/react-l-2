@@ -1,22 +1,30 @@
 import React from "react";
-import Input from "./components/Input/Input";
-import { withFormik } from "formik";
-import Yup from "yup";
+import Registration from "./components/Registration/Registration";
+import Fun from "./components/Fun/Fun";
 import "./App.scss";
 
-const App = () => {
-  return (
-    <div className="container">
-      <h1>Lesson 2 Formik forms</h1>
-      <form className="login-form">
-        <Input name="email" type="text" label="Email" />
-        <Input name="password" type="password" label="Password" />
-        <button className="btn btn-outline-primary" type="submit">
-          Submit
-        </button>
-      </form>
-    </div>
-  );
-};
+class App extends React.Component {
+  state = {
+    isRegistered: false
+  };
+  handleHideFun = () => {
+    setTimeout(() => {
+      this.setState({ isRegistered: false });
+    }, 5000);
+  };
+  handleShowFun = () => {
+    this.setState({ isRegistered: true });
+    this.handleHideFun();
+  };
+  render() {
+    return (
+      <div className="container">
+        {this.state.isRegistered && <Fun />}
+        <h1>Lesson 2 Formik forms</h1>
+        <Registration handleShowFun={this.handleShowFun} />
+      </div>
+    );
+  }
+}
 
 export default App;
