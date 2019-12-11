@@ -1,12 +1,22 @@
 import React from "react";
-import "./App.css";
+import Input from "./components/Input/Input";
+import { withFormik } from "formik";
+import Yup from "yup";
+import "./App.scss";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1>Lesson 2 formik</h1>
+    <div className="container">
+      <h1>Lesson 2 Formik forms</h1>
+      <form className="login-form">
+        <Input name="email" type="text" label="Email" />
+        <Input name="password" type="password" label="Password" />
+        <button className="btn btn-outline-primary" type="submit">
+          Submit
+        </button>
+      </form>
     </div>
   );
-}
+};
 
 export default App;
